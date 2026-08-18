@@ -1,13 +1,108 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>weather-app</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>weather-app</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="searchbar">
+      <label for="searchbar">
+        <i data-lucide="search"></i>
+      </label>
+      <input type="text" name="searchbar" id="searchbar" placeholder="Busca tu ciudad">
+      <button type="button" aria-label="Cerrar busqueda de ciudad">
+        <i data-lucide="X" aria-label="Icono de cerrar"></i>
+      </button>
+    </div>
+  </header>
+  <main class="main">
+    <h1 class="title">Clima</h1>
+    <!-- Información resumida del clima de las ciudades guardadas -->
+    <section class="weather" id="weatherSection">
+      <div class="cards">
+        <div class="card">
+          <div class="card__content">
+            <div class="card__heading">
+              <div class="card__location">
+                <h2 class="heading__city">Nombre de la ciudad</h2>
+                <p class="heading__time">12:58 p.m</p>
+              </div>
+              <div class="card__temperature">
+                <p class="temperature">25°</p>
+              </div>
+              <div class="card__statistics">
+                <p class="statistics">Nublado</p>
+                <p class="statistics">Máxima: <span>11°</span></p>
+                <p class="statistics">Minima: <span>26°</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Información detallada de la ciudad que buscas o de la ciudad guardad -->
+    <section class="weather__city" id="weatherCity">
+      <div class="weather__city-heading">
+        <button type="button" class="btn" aria-label="Cerrar ciudad">
+          <i data-lucide="X"></i>
+        </button>
+        <button type="button" class="btn" aria-label="Agregar ciudad">
+          <i data-lucide="Plus"></i>
+        </button>
+      </div>
+      <div class="weather__city-content">
+        <h2 class="heading__city">Nombre de la ciudad</h2>
+        <p class="temperature">25°</p>
+        <p class="weather__status">Nublado</p>
+        <div class="weather__temperature-statistics">
+          <p class="statistics">Máxima: <span>11°</span></p>
+          <p class="statistics">Minima: <span>26°</span></p>
+        </div>
+        <div class="weather__statistics">
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Sensación térmica</h3>
+              <p class="temperature">26°</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Humedad</h3>
+              <p class="statistics">30%</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Presión</h3>
+              <p class="statistics">1000</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Visibilidad</h3>
+              <p class="statistics">23 km</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Viento</h3>
+              <div class="card__statistics">
+                <p class="statistics">Velocidad: <span>9 km/h</span></p>
+                <p class="statistics">Dirección: <span>153 grados</span></p>
+                <p class="statistics">Rafagas: <span>26 km/h</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
