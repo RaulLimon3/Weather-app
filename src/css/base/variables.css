@@ -95,6 +95,18 @@
     --space-10: 2.5rem;
 
     /* Bordes */
+    --border-radius-none: 0;
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+    --border-radius-xl: 1rem;
+    --border-radius-2xl: 1.5rem;
+    --border-radius-full: 999px;
+
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-width-thick: 4px;
+
     /* Sombras */
     /* Transiciones */
 }
