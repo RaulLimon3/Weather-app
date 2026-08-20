@@ -55,7 +55,32 @@
     --color-accent-900: #003246;
 
     /* Tipografia */
+    --ff-base: "Nunito", sans-serif;
+
     /* Tamaño de textos */
+    --fz-xs: 0.75rem;
+    --fz-sm: 0.875rem;
+    --fz-base: 1rem;
+    --fz-lg: 1.125rem;
+    --fz-xl: 1.25rem;
+    --fz-2xl: 1.5rem;
+    --fz-3xl: 1.875rem;
+    --fz-4xl: 2.25rem;
+    --fz-5xl: 3rem;
+
+    --fw-extra-ligth: 200;
+    --fw-ligth: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+    --fw-extra-bold: 800;
+    --fw-black: 900;
+    
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.7;
+
     /* Espaciados */
     /* Bordes */
     /* Sombras */
