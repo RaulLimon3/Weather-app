@@ -76,7 +76,7 @@
     --fw-bold: 700;
     --fw-extra-bold: 800;
     --fw-black: 900;
-    
+
     --lh-tight: 1.2;
     --lh-normal: 1.5;
     --lh-relaxed: 1.7;
@@ -114,4 +114,7 @@
     --shadow-xl: 0 20px 25px var(--color-dark-500);
 
     /* Transiciones */
+    --transition-fast: 150ms ease-out;
+    --transition-normal: 250ms ease-out;
+    --transition-slow: 350ms ease-in-out;
 }
