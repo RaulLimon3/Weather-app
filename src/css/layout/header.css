@@ -1,0 +1,14 @@
+.header {
+    width: 300px;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-dark-400);
+    border-radius: var(--border-radius-2xl);
+    padding: var(--space-1);
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+}

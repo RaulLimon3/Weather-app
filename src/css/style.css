@@ -1,2 +1,5 @@
 @import './base/variables.css';
 @import './base/resets.css';
+@import './layout/layout-app.css';
+@import './layout/header.css';
+@import './layout/main.css';
