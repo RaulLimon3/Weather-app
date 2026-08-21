@@ -14,46 +14,46 @@
 
 <body>
   <div class="layout">
-    <header class="header">
-      <div class="searchbar">
-        <label for="searchbar">
-          <i data-lucide="search"></i>
-        </label>
-        <input type="text" name="searchbar" id="searchbar" placeholder="Busca tu ciudad">
-        <button type="button" aria-label="Cerrar busqueda de ciudad">
-          <i data-lucide="X" aria-label="Icono de cerrar"></i>
-        </button>
-      </div>
-    </header>
-    <main class="main">
+    <section class="weather" id="weatherSection">
+      <header class="header">
+        <div class="searchbar">
+          <label for="searchbar">
+            <i data-lucide="search"></i>
+          </label>
+          <input type="text" name="searchbar" id="searchbar" placeholder="Busca tu ciudad">
+          <button type="button" aria-label="Cerrar busqueda de ciudad">
+            <i data-lucide="X" aria-label="Icono de cerrar"></i>
+          </button>
+        </div>
+      </header>
       <h1 class="title">Clima</h1>
-      <!-- Información resumida del clima de las ciudades guardadas -->
-      <section class="weather" id="weatherSection">
-        <div class="cards">
-          <div class="card">
-            <div class="card__content">
-              <div class="card__heading">
-                <div class="card__location">
-                  <h2 class="card__location-city">Nombre de la ciudad</h2>
-                  <p class="card__location-time">12:58 p.m</p>
-                </div>
-                <div class="card__temperature">
-                  <p class="temperature">25°</p>
-                </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card__content">
+            <div class="card__heading">
+              <div class="card__location">
+                <h2 class="card__location-city">Nombre de la ciudad</h2>
+                <p class="card__location-time">12:58 p.m</p>
               </div>
-              <div class="card__body">
-                <div class="card__statistics">
-                  <p class="statistics">Nublado</p>
-                  <p class="statistics">Máxima: <span>11°</span></p>
-                  <p class="statistics">Mínima: <span>26°</span></p>
-                </div>
+              <div class="card__temperature">
+                <p class="temperature">25°</p>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="card__statistics">
+                <p class="statistics">Nublado</p>
+                <p class="statistics">Máxima: <span>11°</span></p>
+                <p class="statistics">Mínima: <span>26°</span></p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <!-- Información detallada de la ciudad que buscas o de la ciudad guardada -->
-      <section class="weather-city" id="weatherCity">
+      </div>
+    </section>
+    <!-- Información resumida del clima de las ciudades guardadas -->
+    <!-- Información detallada de la ciudad que buscas o de la ciudad guardada -->
+    <main class="main">
+      <div class="weather-city" id="weatherCity">
         <div class="weather-city__heading">
           <button type="button" class="btn" aria-label="Cerrar ciudad">
             <i data-lucide="X" class="icon"></i>
@@ -107,7 +107,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   </div>
   <script type="module" src="/src/main.js"></script>
