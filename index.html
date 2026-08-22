@@ -14,100 +14,112 @@
 
 <body>
   <div class="layout">
-    <section class="weather" id="weatherSection">
-      <header class="header">
-        <div class="searchbar">
-          <label for="searchbar">
-            <i data-lucide="search"></i>
-          </label>
-          <input type="text" name="searchbar" id="searchbar" placeholder="Busca tu ciudad">
-          <button type="button" aria-label="Cerrar busqueda de ciudad">
-            <i data-lucide="X" aria-label="Icono de cerrar"></i>
-          </button>
-        </div>
-      </header>
+    <header class="header">
       <h1 class="title">Clima</h1>
-      <div class="cards">
+      <div class="searchbar">
+        <label for="country">
+          <i data-lucide="search"></i>
+        </label>
+        <input type="text" name="country" id="searchCountry" class="input" placeholder="Busca tu ciudad">
+      </div>
+    </header>
+    <main class="main">
+      <section class="weather-location">
         <div class="card">
           <div class="card__content">
-            <div class="card__heading">
-              <div class="card__location">
-                <h2 class="card__location-city">Nombre de la ciudad</h2>
-                <p class="card__location-time">12:58 p.m</p>
-              </div>
-              <div class="card__temperature">
-                <p class="temperature">25°</p>
-              </div>
+            <h2 class="card__title" id="locationName">Nombre de la ciudad</h2>
+            <div class="card__data">
+              <p class="weather-temperature" id="locationTemperature">23°C</p>
+              <p class="weather-status" id="locationStatus">Nublado</p>
             </div>
-            <div class="card__body">
-              <div class="card__statistics">
-                <p class="statistics">Nublado</p>
-                <p class="statistics">Máxima: <span>11°</span></p>
-                <p class="statistics">Mínima: <span>26°</span></p>
-              </div>
+            <div class="card__description">
+              <p class="weather-description" id="locationDescription">Ligeramente nublado</p>
+              <span class="icon" id="iconCondition">Icono</span>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- Información resumida del clima de las ciudades guardadas -->
-    <!-- Información detallada de la ciudad que buscas o de la ciudad guardada -->
-    <main class="main">
-      <div class="weather-city" id="weatherCity">
-        <div class="weather-city__heading">
-          <button type="button" class="btn" aria-label="Cerrar ciudad">
-            <i data-lucide="X" class="icon"></i>
-          </button>
-          <button type="button" class="btn" aria-label="Agregar ciudad">
-            <i data-lucide="Plus" class="icon"></i>
-          </button>
-        </div>
-        <div class="weather-city__content">
-          <h2 class="content-name">Nombre de la ciudad</h2>
-          <p class="content-temperature">25°</p>
-          <p class="content-status">Nublado</p>
-          <div class="content__statistics">
-            <p class="statistics">Máxima: <span>11°</span></p>
-            <p class="statistics">Mínima: <span>26°</span></p>
+      </section>
+      <section class="weather-information">
+        <div class="cards">
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Amanecer</h3>
+              <i data-lucide="sunrise" class="icon"></i>
+              <p class="card__value" id="sunrise">07:15 AM</p>
+            </div>
           </div>
-          <div class="weather-city__statistics">
-            <div class="card weather-card">
-              <div class="weather-card__content">
-                <h3 class="weather-card__title">Sensación térmica</h3>
-                <p class="weather-card__temperature">26°</p>
-              </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Atardecer</h3>
+              <i data-lucide="sunset" class="icon"></i>
+              <p class="card__value" id="sunset">19:42 PM</p>
             </div>
-            <div class="card weather-card">
-              <div class="weather-card__content">
-                <h3 class="weather-card__title">Humedad</h3>
-                <p class="weather-card__statistics">30%</p>
-              </div>
-            </div>
-            <div class="card weather-card">
-              <div class="weather-card__content">
-                <h3 class="weather-card__title">Presión</h3>
-                <p class="weather-card__statistics">1000</p>
-              </div>
-            </div>
-            <div class="card weather-card">
-              <div class="weather-card__content">
-                <h3 class="weather-card__title">Visibilidad</h3>
-                <p class="weather-card__statistics">23 km</p>
-              </div>
-            </div>
-            <div class="card weather-card">
-              <div class="weather-card__content">
-                <h3 class="weather-card__title">Viento</h3>
-                <div class="weather-card__statistics">
-                  <p class="statistics">Velocidad: <span>9 km/h</span></p>
-                  <p class="statistics">Dirección: <span>153 grados</span></p>
-                  <p class="statistics">Ráfagas: <span>26 km/h</span></p>
-                </div>
-              </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Visibilidad</h3>
+              <i data-lucide="eye" class="icon"></i>
+              <p class="card__value" id="visibility">37 km</p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      <section class="weather-data">
+        <div class="cards">
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Sensación</h3>
+              <i data-lucide="thermometer-sun" class="icon"></i>
+              <p class="card__value" id="feelsLike">27°</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">T. Máxima</h3>
+              <i data-lucide="Sun" class="icon"></i>
+              <p class="card__value" id="tempMax">27°</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">T. Mínima</h3>
+              <i data-lucide="sun-dim" class="icon"></i>
+              <p class="card__value" id="tempMin">18°</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Presión</h3>
+              <i data-lucide="wind-arrow-down" class="icon"></i>
+              <p class="card__value" id="pressure">761 hPa</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Humedad</h3>
+              <i data-lucide="droplets" class="icon"></i>
+              <p class="card__value" id="humidity">18%</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__content">
+              <h3 class="card__title">Nueves</h3>
+              <i data-lucide="cloudy" class="icon"></i>
+              <p class="card__value" id="clouds">18%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="weather-wind">
+        <div class="card">
+          <div class="card__content">
+            <h3 class="card__title">Viento <i data-lucide="wind" class="icon"></i></h3>
+            <p class="card__text">Velocidad <span class="card__value" id="windSpeed">0 km/h</span></p>
+            <p class="card__text">Dirección <span class="card__value" id="windDeg">0°</span></p>
+            <p class="card__text">Rafagas <span class="card__value" id="windGust">0 km/h</span></p>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
   <script type="module" src="/src/main.js"></script>
