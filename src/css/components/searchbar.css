@@ -1,0 +1,25 @@
+.searchbar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+}
+
+.searchbar-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-8) var(--space-2) var(--space-2);
+    font-size: var(--fz-lg);
+    outline: none;
+    border-radius: var(--border-radius-md);
+    border: var(--border-width-thin) solid var(--color-primary-200);
+    transition: border-color var(--transition-normal);
+}
+
+.searchbar-label {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 9px;
+}

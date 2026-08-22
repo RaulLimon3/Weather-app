@@ -3,3 +3,5 @@
 @import './layout/layout-app.css';
 @import './layout/header.css';
 @import './layout/main.css';
+@import './components/card.css';
+@import './components/searchbar.css';
