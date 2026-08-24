@@ -16,6 +16,14 @@
     transition: border-color var(--transition-normal);
 }
 
+.searchbar-input:hover {
+    border-color: var(--color-primary-400);
+}
+
+.searchbar-input:focus {
+    border-color: var(--color-primary-800);
+}
+
 .searchbar-label {
     position: absolute;
     display: flex;
