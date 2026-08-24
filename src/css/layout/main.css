@@ -1,6 +1,31 @@
 .main {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--space-8);
+}
+
+@media screen and (min-width: 768px) {
+    .main {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "location data"
+            "information wind";
+    }
+
+    .weather-location {
+        grid-area: location;
+    }
+
+    .weather-information {
+        grid-area: information;
+    }
+
+    .weather-data {
+        grid-area: data;
+    }
+
+    .weather-wind {
+        grid-area: wind;
+    }
 }
