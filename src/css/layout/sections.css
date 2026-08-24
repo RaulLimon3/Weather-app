@@ -1,0 +1,13 @@
+.weather-location {
+    width: 100%;
+    height: 70dvh;
+}
+
+.weather-temperature {
+    font-size: var(--fz-5xl);
+    font-weight: var(--fw-bold);
+}
+
+.weather-status {
+    font-weight: var(--fw-semi-bold);
+}
