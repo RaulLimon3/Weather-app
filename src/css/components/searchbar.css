@@ -17,11 +17,11 @@
 }
 
 .searchbar-input:hover {
-    border-color: var(--color-primary-400);
+    border-color: var(--color-secondary-400);
 }
 
 .searchbar-input:focus {
-    border-color: var(--color-primary-800);
+    border-color: var(--color-accent-500);
 }
 
 .searchbar-label {
@@ -30,4 +30,5 @@
     justify-content: center;
     align-items: center;
     right: 9px;
+    color: var(--color-primary-500);
 }

@@ -1,0 +1,6 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-6) var(--space-4);
+}

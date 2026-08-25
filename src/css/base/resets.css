@@ -14,7 +14,7 @@ html {
 body {
     font-family: var(--ff-base);
     line-height: var(--lh-relaxed);
-    background: var(--color-primary-400);
+    background: var(--color-white);
     color: var(--color-dark-500);
 }
 
