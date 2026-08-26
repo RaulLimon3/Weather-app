@@ -41,29 +41,47 @@ const getWeather = async (api) => {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
-        cityName.textContent = data.name;
-        cityTemperature.textContent = `${data.main.temp}°`;
-        data.weather.forEach(data => {
-            cityStatus.textContent = data.main;
-            cityStatusDescription.textContent = data.description;
-            descriptionIcon.src = `https://openweathermap.org/img/wn/${data.icon}@2x.png`
-            descriptionIcon.alt = `${data.description}`;
-        });
-        sunRiseTime.textContent = setTime(data.sys.sunrise);
-        sunSetTime.textContent = setTime(data.sys.sunset);
-        visibilityStatus.textContent = `${data.visibility / 1000} km`;
-        feelsLikeTemperature.textContent = `${data.main.feels_like}°`;
-        maxTemperature.textContent = `${data.main.temp_max}°`;
-        minTemperature.textContent = `${data.main.temp_min}°`;
-        atomosphericPressure.textContent = `${data.main.pressure} hPa`;
-        humidityStatus.textContent = `${data.main.humidity}%`;
-        cloudsStatus.textContent = `${data.clouds.all}%`
-        windSpeed.textContent = `${data.wind.speed} m/s`;
-        windDirection.textContent = `${data.wind.deg}°`;
-        windGust.textContent = `${data.wind.gust} m/s`;
+        renderData(data);
     } catch (error) {
         console.error(`Error: ${error}`);
     }
+};
+
+const setWeather = ({ main, description, icon }) => {
+    cityStatus.textContent = main;
+    cityStatusDescription.textContent = description;
+    descriptionIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
+    descriptionIcon.alt = `${description}`;
+};
+
+const setWeatherStatistics = ({temp, feels_like, temp_min, temp_max, pressure, humidity}) => {
+    cityTemperature.textContent = `${temp}°`;
+    feelsLikeTemperature.textContent = `${feels_like}°`;
+    maxTemperature.textContent = `${temp_max}°`;
+    minTemperature.textContent = `${temp_min}°`;
+    atomosphericPressure.textContent = `${pressure} hPa`;
+    humidityStatus.textContent = `${humidity}%`;
+};
+
+const setWind = ({speed, deg, gust}) => {
+    windSpeed.textContent = `${speed} m/s`;
+    windDirection.textContent = `${deg}°`;
+    windGust.textContent = `${gust} m/s`;
+};
+
+const setSunTimes = ({sunrise, sunset}) => {
+    sunRiseTime.textContent = setTime(sunrise);
+    sunSetTime.textContent = setTime(sunset);
+};
+
+const renderData = ({name, weather, main, sys, visibility, clouds, wind}) => {
+    cityName.textContent = name;
+    setWeather(weather[0]);
+    setWeatherStatistics(main);
+    setSunTimes(sys);
+    visibilityStatus.textContent = `${visibility / 1000} km`;
+    cloudsStatus.textContent = `${clouds.all}%`;
+    setWind(wind);
 };
 
 const setTime = (unixValue) => {
