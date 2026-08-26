@@ -41,8 +41,37 @@ const getWeather = async (api) => {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+        cityName.textContent = data.name;
+        cityTemperature.textContent = `${data.main.temp}°`;
+        data.weather.forEach(data => {
+            cityStatus.textContent = data.main;
+            cityStatusDescription.textContent = data.description;
+            descriptionIcon.src = `https://openweathermap.org/img/wn/${data.icon}@2x.png`
+            descriptionIcon.alt = `${data.description}`;
+        });
+        sunRiseTime.textContent = setTime(data.sys.sunrise);
+        sunSetTime.textContent = setTime(data.sys.sunset);
+        visibilityStatus.textContent = `${data.visibility / 1000} km`;
+        feelsLikeTemperature.textContent = `${data.main.feels_like}°`;
+        maxTemperature.textContent = `${data.main.temp_max}°`;
+        minTemperature.textContent = `${data.main.temp_min}°`;
+        atomosphericPressure.textContent = `${data.main.pressure} hPa`;
+        humidityStatus.textContent = `${data.main.humidity}%`;
+        cloudsStatus.textContent = `${data.clouds.all}%`
+        windSpeed.textContent = `${data.wind.speed} m/s`;
+        windDirection.textContent = `${data.wind.deg}°`;
+        windGust.textContent = `${data.wind.gust} m/s`;
     } catch (error) {
         console.error(`Error: ${error}`);
     }
 };
+
+const setTime = (unixValue) => {
+    const unixTimesStamp = (unixValue);
+    const date = new Date(unixTimesStamp * 1000);
+    return dateFormat(date);
+};
+
+const dateFormat = (date) => {
+    return date.toLocaleTimeString('es-MX', { hour12: true, hour: 'numeric', minute: '2-digit' });
+}; 
