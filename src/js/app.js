@@ -41,10 +41,19 @@ const getWeather = async (api) => {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data);
         renderData(data);
     } catch (error) {
         console.error(`Error: ${error}`);
     }
+};
+
+const setCityWeather = (city) => {
+    localStorage.setItem('city', JSON.stringify(city));
+};
+
+const getCityWeather = () => {
+    return JSON.parse(localStorage.getItem('city'));
 };
 
 const setWeather = ({ main, description, icon }) => {
@@ -75,6 +84,17 @@ const setSunTimes = ({sunrise, sunset}) => {
 };
 
 const renderData = ({name, weather, main, sys, visibility, clouds, wind}) => {
+    const cityData = {
+        name,
+        weather: weather[0],
+        main,
+        sys,
+        visibility,
+        clouds,
+        wind
+    };
+    setCityWeather(cityData);
+    console.log(cityData);
     cityName.textContent = name;
     setWeather(weather[0]);
     setWeatherStatistics(main);
