@@ -5,6 +5,7 @@ const API_KEY = '1d4aa0fdcc1142204c29eebe5fcff161';
 
 // Acceder a nuestros elementos
 const searchBar = document.getElementById('searchCountry');
+const messageError = document.getElementById('messageError');
 const cityName = document.getElementById('locationName');
 const cityTemperature = document.getElementById('locationTemperature');
 const cityStatus = document.getElementById('locationStatus');
@@ -27,6 +28,22 @@ const windGust = document.getElementById('windGust');
 searchBar.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const city = searchBar.value.trim();
+        if (!city) {
+            searchBar.classList.add('searchbar-input--error');
+            showMessage('Por favor busca una ciudad');
+            return;
+        }
+        if (city.length < 2 || city.length > 50) {
+            searchBar.classList.add('searchbar-input--error');
+            showMessage('Esta ciudad no es valida, ingrese otra ciudad por favor');
+            return;
+        }
+        if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(city)) {
+            searchBar.classList.add('searchbar-input--error');
+            showMessage('El formato no es valido, ingrese una ciudad por favor');
+            return;
+        }
+        removeMessage();
         const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`;
         getWeather(WEATHER_API);
         searchBar.value = '';
@@ -55,7 +72,7 @@ const getCityWeather = () => {
     return JSON.parse(localStorage.getItem('city'));
 };
 
-const handleWeather = ({name, weather, main, sys, visibility, clouds, wind}) => {
+const handleWeather = ({ name, weather, main, sys, visibility, clouds, wind }) => {
     const cityData = {
         name,
         weather: weather[0],
@@ -76,7 +93,7 @@ const setWeather = ({ main, description, icon }) => {
     descriptionIcon.alt = `${description}`;
 };
 
-const setWeatherStatistics = ({temp, feels_like, temp_min, temp_max, pressure, humidity}) => {
+const setWeatherStatistics = ({ temp, feels_like, temp_min, temp_max, pressure, humidity }) => {
     cityTemperature.textContent = `${temp}°`;
     feelsLikeTemperature.textContent = `${feels_like}°`;
     maxTemperature.textContent = `${temp_max}°`;
@@ -85,18 +102,18 @@ const setWeatherStatistics = ({temp, feels_like, temp_min, temp_max, pressure, h
     humidityStatus.textContent = `${humidity}%`;
 };
 
-const setWind = ({speed, deg, gust}) => {
+const setWind = ({ speed, deg, gust }) => {
     windSpeed.textContent = `${speed} m/s`;
     windDirection.textContent = `${deg}°`;
     windGust.textContent = `${gust} m/s`;
 };
 
-const setSunTimes = ({sunrise, sunset}) => {
+const setSunTimes = ({ sunrise, sunset }) => {
     sunRiseTime.textContent = setTime(sunrise);
     sunSetTime.textContent = setTime(sunset);
 };
 
-const renderData = ({name, weather, main, sys, visibility, clouds, wind}) => {
+const renderData = ({ name, weather, main, sys, visibility, clouds, wind }) => {
     cityName.textContent = name;
     setWeather(weather);
     setWeatherStatistics(main);
@@ -104,6 +121,16 @@ const renderData = ({name, weather, main, sys, visibility, clouds, wind}) => {
     visibilityStatus.textContent = `${visibility / 1000} km`;
     cloudsStatus.textContent = `${clouds.all}%`;
     setWind(wind);
+};
+
+const showMessage = (message) => {
+    messageError.classList.remove('navbar-message--hidden');
+    messageError.textContent = message;
+};
+
+const removeMessage = () => {
+    messageError.classList.add('navbar-message--hidden');
+    messageError.textContent = '';
 };
 
 const setTime = (unixValue) => {

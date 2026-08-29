@@ -24,6 +24,10 @@
     border-color: var(--color-accent-500);
 }
 
+.searchbar-input--error {
+    border-color: rgb(255, 96, 96);
+}
+
 .searchbar-label {
     position: absolute;
     display: flex;
