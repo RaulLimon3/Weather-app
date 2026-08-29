@@ -41,8 +41,7 @@ const getWeather = async (api) => {
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
-        renderData(data);
+        handleWeather(data);
     } catch (error) {
         console.error(`Error: ${error}`);
     }
@@ -54,6 +53,20 @@ const setCityWeather = (city) => {
 
 const getCityWeather = () => {
     return JSON.parse(localStorage.getItem('city'));
+};
+
+const handleWeather = ({name, weather, main, sys, visibility, clouds, wind}) => {
+    const cityData = {
+        name,
+        weather: weather[0],
+        main,
+        sys,
+        visibility,
+        clouds,
+        wind
+    };
+    renderData(cityData);
+    setCityWeather(cityData);
 };
 
 const setWeather = ({ main, description, icon }) => {
@@ -84,19 +97,8 @@ const setSunTimes = ({sunrise, sunset}) => {
 };
 
 const renderData = ({name, weather, main, sys, visibility, clouds, wind}) => {
-    const cityData = {
-        name,
-        weather: weather[0],
-        main,
-        sys,
-        visibility,
-        clouds,
-        wind
-    };
-    setCityWeather(cityData);
-    console.log(cityData);
     cityName.textContent = name;
-    setWeather(weather[0]);
+    setWeather(weather);
     setWeatherStatistics(main);
     setSunTimes(sys);
     visibilityStatus.textContent = `${visibility / 1000} km`;
@@ -112,4 +114,7 @@ const setTime = (unixValue) => {
 
 const dateFormat = (date) => {
     return date.toLocaleTimeString('es-MX', { hour12: true, hour: 'numeric', minute: '2-digit' });
-}; 
+};
+
+const cityWeather = getCityWeather();
+renderData(cityWeather);
