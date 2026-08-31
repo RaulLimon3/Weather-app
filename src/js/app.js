@@ -28,21 +28,7 @@ const windGust = document.getElementById('windGust');
 searchBar.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const city = searchBar.value.trim();
-        if (!city) {
-            searchBar.classList.add('searchbar-input--error');
-            showMessage('Por favor busca una ciudad');
-            return;
-        }
-        if (city.length < 2 || city.length > 50) {
-            searchBar.classList.add('searchbar-input--error');
-            showMessage('Esta ciudad no es valida, ingrese otra ciudad por favor');
-            return;
-        }
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(city)) {
-            searchBar.classList.add('searchbar-input--error');
-            showMessage('El formato no es valido, ingrese una ciudad por favor');
-            return;
-        }
+        if (!validateInput(city)) return;
         removeMessage();
         const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`;
         getWeather(WEATHER_API);
@@ -55,28 +41,32 @@ const getWeather = async (api) => {
     try {
         const response = await fetch(api);
         if (!response.ok) {
-            switch (response.status) {
-                case 404:
-                    showMessage('No encontramos esa ciudad. Verifica el nombre');
-                    break;
-                case 401:
-                    showMessage('No se puedo validar la información, intentelo de nuevo por favor');
-                    break;
-                case 429:
-                    showMessage('Haz hecho muchas solicitudes, intentelo más tarde por favor');
-                    break;
-                case 500:
-                    showMessage('El servidor esta teniendo problemas, intentalo mas tarde por favor');
-                    break;
-                default:
-                    showMessage('Ha ocurrido un error. Intentalo nuevamente');
-            }
+            handleHttpError(response.status);
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
         handleWeather(data);
     } catch (error) {
         console.error(`Error: ${error}`);
+    }
+};
+
+const handleHttpError = (status) => {
+    switch (status) {
+        case 404:
+            showMessage('No encontramos esa ciudad. Verifica el nombre');
+            break;
+        case 401:
+            showMessage('No se puedo validar la información, intentelo de nuevo por favor');
+            break;
+        case 429:
+            showMessage('Haz hecho muchas solicitudes, intentelo más tarde por favor');
+            break;
+        case 500:
+            showMessage('El servidor esta teniendo problemas, intentalo mas tarde por favor');
+            break;
+        default:
+            showMessage('Ha ocurrido un error. Intentalo nuevamente');
     }
 };
 
@@ -100,6 +90,25 @@ const handleWeather = ({ name, weather, main, sys, visibility, clouds, wind }) =
     };
     renderData(cityData);
     setCityWeather(cityData);
+};
+
+const validateInput = (value) => {
+    if (!value) {
+        searchBar.classList.add('searchbar-input--error');
+        showMessage('Por favor busca una ciudad');
+        return false;
+    }
+    if (value.length < 2 || value.length > 50) {
+        searchBar.classList.add('searchbar-input--error');
+        showMessage('Esta ciudad no es valida, ingrese otra ciudad por favor');
+        return false;
+    }
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(value)) {
+        searchBar.classList.add('searchbar-input--error');
+        showMessage('El formato no es valido, ingrese una ciudad por favor');
+        return false;
+    }
+    return true;
 };
 
 const setWeather = ({ main, description, icon }) => {
