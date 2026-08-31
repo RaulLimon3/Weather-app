@@ -38,7 +38,7 @@ searchBar.addEventListener('keydown', (e) => {
             showMessage('Esta ciudad no es valida, ingrese otra ciudad por favor');
             return;
         }
-        if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(city)) {
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(city)) {
             searchBar.classList.add('searchbar-input--error');
             showMessage('El formato no es valido, ingrese una ciudad por favor');
             return;
@@ -55,6 +55,22 @@ const getWeather = async (api) => {
     try {
         const response = await fetch(api);
         if (!response.ok) {
+            switch (response.status) {
+                case 404:
+                    showMessage('No encontramos esa ciudad. Verifica el nombre');
+                    break;
+                case 401:
+                    showMessage('No se puedo validar la información, intentelo de nuevo por favor');
+                    break;
+                case 429:
+                    showMessage('Haz hecho muchas solicitudes, intentelo más tarde por favor');
+                    break;
+                case 500:
+                    showMessage('El servidor esta teniendo problemas, intentalo mas tarde por favor');
+                    break;
+                default:
+                    showMessage('Ha ocurrido un error. Intentalo nuevamente');
+            }
             throw new Error(`Error HTTP: ${response.status}`);
         }
         const data = await response.json();
