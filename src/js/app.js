@@ -18,7 +18,7 @@ const visibilityStatus = document.getElementById('visibility');
 const feelsLikeTemperature = document.getElementById('feelsLike');
 const maxTemperature = document.getElementById('tempMax');
 const minTemperature = document.getElementById('tempMin');
-const atomosphericPressure = document.getElementById('pressure');
+const atmosphericPressure = document.getElementById('pressure');
 const humidityStatus = document.getElementById('humidity');
 const cloudsStatus = document.getElementById('clouds');
 const windSpeed = document.getElementById('windSpeed');
@@ -126,7 +126,7 @@ const setWeatherStatistics = ({ temp, feels_like, temp_min, temp_max, pressure, 
     feelsLikeTemperature.textContent = `${feels_like}°`;
     maxTemperature.textContent = `${temp_max}°`;
     minTemperature.textContent = `${temp_min}°`;
-    atomosphericPressure.textContent = `${pressure} hPa`;
+    atmosphericPressure.textContent = `${pressure} hPa`;
     humidityStatus.textContent = `${humidity}%`;
 };
 
@@ -172,9 +172,7 @@ const showEmptyState = () => {
 };
 
 const setTime = (unixValue) => {
-    const unixTimesStamp = (unixValue);
-    const date = new Date(unixTimesStamp * 1000);
-    return dateFormat(date);
+    return dateFormat(new Date(unixValue * 1000));
 };
 
 const dateFormat = (date) => {
