@@ -16,6 +16,9 @@ body {
     line-height: var(--lh-relaxed);
     background: var(--color-white);
     color: var(--color-dark-500);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
 
 img {

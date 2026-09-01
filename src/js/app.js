@@ -4,6 +4,7 @@ import './icons';
 const API_KEY = '1d4aa0fdcc1142204c29eebe5fcff161';
 
 // Acceder a nuestros elementos
+const weatherContent = document.getElementById('weatherContent');
 const searchBar = document.getElementById('searchCountry');
 const messageError = document.getElementById('messageError');
 const cityName = document.getElementById('locationName');
@@ -23,6 +24,7 @@ const cloudsStatus = document.getElementById('clouds');
 const windSpeed = document.getElementById('windSpeed');
 const windDirection = document.getElementById('windDeg');
 const windGust = document.getElementById('windGust');
+const emptyData = document.getElementById('emptyState');
 
 // Buscamos los el clima del pais
 searchBar.addEventListener('keydown', (e) => {
@@ -90,6 +92,7 @@ const handleWeather = ({ name, weather, main, sys, visibility, clouds, wind }) =
     };
     renderData(cityData);
     setCityWeather(cityData);
+    showWeatherContent();
 };
 
 const validateInput = (value) => {
@@ -158,6 +161,16 @@ const removeMessage = () => {
     messageError.textContent = '';
 };
 
+const showWeatherContent = () => {
+    weatherContent.classList.remove('layout--hidden');
+    emptyData.classList.add('empty-state--hidden');
+};
+
+const showEmptyState = () => {
+    weatherContent.classList.add('layout--hidden');
+    emptyData.classList.remove('empty-state--hidden');
+};
+
 const setTime = (unixValue) => {
     const unixTimesStamp = (unixValue);
     const date = new Date(unixTimesStamp * 1000);
@@ -169,4 +182,9 @@ const dateFormat = (date) => {
 };
 
 const cityWeather = getCityWeather();
-renderData(cityWeather);
+if (!cityWeather) {
+    showEmptyState();
+} else {
+    showWeatherContent();
+    renderData(cityWeather);
+}

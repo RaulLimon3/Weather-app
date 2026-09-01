@@ -28,7 +28,7 @@
     </div>
     <span class="navbar-message navbar-message--hidden" id="messageError">Mensaje de error</span>
   </nav>
-  <div class="layout">
+  <div class="layout" id="weatherContent">
     <main class="main">
       <section class="weather-location">
         <div class="card">
@@ -127,6 +127,10 @@
         </div>
       </section>
     </main>
+  </div>
+  <div class="empty-state empty-state--hidden" id="emptyState">
+    <i data-lucide="info"></i> 
+    <p>Ingresa una ciudad para consultar el clima.</p>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
