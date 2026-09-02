@@ -1,5 +1,5 @@
 import { setCityWeather } from "../storage/weatherStorage";
-import { renderData } from "../ui/weather";
+import { renderData, showWeatherContent } from "../ui/weather";
 
 const handleWeather = ({ name, weather, main, sys, visibility, clouds, wind }) => {
     const cityData = {
@@ -13,6 +13,7 @@ const handleWeather = ({ name, weather, main, sys, visibility, clouds, wind }) =
     };
     renderData(cityData);
     setCityWeather(cityData);
+    showWeatherContent();
 };
 
 export default handleWeather;

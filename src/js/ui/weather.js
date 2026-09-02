@@ -1,7 +1,6 @@
 import setTime from "../utils/date";
 
 const weatherContent = document.getElementById('weatherContent');
-const searchBar = document.getElementById('searchCountry');
 const messageError = document.getElementById('messageError');
 const cityName = document.getElementById('locationName');
 const cityTemperature = document.getElementById('locationTemperature');
@@ -22,22 +21,23 @@ const windDirection = document.getElementById('windDeg');
 const windGust = document.getElementById('windGust');
 const emptyData = document.getElementById('emptyState');
 
-const validateInput = (value) => {
+const validateInput = (input,value) => {
     if (!value) {
-        searchBar.classList.add('searchbar-input--error');
+        input.classList.add('searchbar-input--error');
         showMessage('Por favor busca una ciudad');
         return false;
     }
     if (value.length < 2 || value.length > 50) {
-        searchBar.classList.add('searchbar-input--error');
+        input.classList.add('searchbar-input--error');
         showMessage('Esta ciudad no es valida, ingrese otra ciudad por favor');
         return false;
     }
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/.test(value)) {
-        searchBar.classList.add('searchbar-input--error');
+        input.classList.add('searchbar-input--error');
         showMessage('El formato no es valido, ingrese una ciudad por favor');
         return false;
     }
+    removeMessage();
     return true;
 };
 
