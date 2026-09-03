@@ -1,7 +1,7 @@
 import handleWeather from "../logic/weather";
 import { showMessage } from "../ui/weather";
 
-const API_KEY = '1d4aa0fdcc1142204c29eebe5fcff161';
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
 const getWeather = async (city) => {
     const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`;
