@@ -1,4 +1,5 @@
 import setTime from "../utils/date";
+import { formatDistance, formatPercentage, formatPressure, formatTemperature, formatWindSpeed } from "../utils/format";
 
 const weatherContent = document.getElementById('weatherContent');
 const messageError = document.getElementById('messageError');
@@ -49,18 +50,18 @@ const setWeather = ({ main, description, icon }) => {
 };
 
 const setWeatherStatistics = ({ temp, feels_like, temp_min, temp_max, pressure, humidity }) => {
-    cityTemperature.textContent = `${temp}°`;
-    feelsLikeTemperature.textContent = `${feels_like}°`;
-    maxTemperature.textContent = `${temp_max}°`;
-    minTemperature.textContent = `${temp_min}°`;
-    atmosphericPressure.textContent = `${pressure} hPa`;
-    humidityStatus.textContent = `${humidity}%`;
+    cityTemperature.textContent = formatTemperature(temp);
+    feelsLikeTemperature.textContent = formatTemperature(feels_like);
+    maxTemperature.textContent = formatTemperature(temp_max);
+    minTemperature.textContent = formatTemperature(temp_min);
+    atmosphericPressure.textContent = formatPressure(pressure);
+    humidityStatus.textContent = formatPercentage(humidity);
 };
 
 const setWind = ({ speed, deg, gust }) => {
-    windSpeed.textContent = `${speed} m/s`;
-    windDirection.textContent = `${deg}°`;
-    windGust.textContent = `${gust} m/s`;
+    windSpeed.textContent = formatWindSpeed(speed);
+    windDirection.textContent = formatTemperature(deg);
+    windGust.textContent = formatWindSpeed(gust);
 };
 
 const setSunTimes = ({ sunrise, sunset }) => {
@@ -73,8 +74,8 @@ const renderData = ({ name, weather, main, sys, visibility, clouds, wind }) => {
     setWeather(weather);
     setWeatherStatistics(main);
     setSunTimes(sys);
-    visibilityStatus.textContent = `${visibility / 1000} km`;
-    cloudsStatus.textContent = `${clouds.all}%`;
+    visibilityStatus.textContent = formatDistance(visibility / 1000);
+    cloudsStatus.textContent = formatPercentage(clouds.all);
     setWind(wind);
 };
 
