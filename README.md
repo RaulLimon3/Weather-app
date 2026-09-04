@@ -6,7 +6,7 @@ A responsive weather application built with HTML, CSS, and vanilla JavaScript th
 
 ## 🚀 Live Demo
 
-🔗
+🔗  [View the Weather App](https://weather-app-beta-six-36.vercel.app/)
 
 ---
 
